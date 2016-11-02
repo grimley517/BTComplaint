@@ -10,6 +10,7 @@ sends the email
 import speedtest as st
 from datetime import datetime, date, time, timedelta
 import os.path as Path
+import DailyActions as daily
 
 def updatefile(speedcheck):
     filename = "results/{0} speedresults.csv".format(date.today())
@@ -17,6 +18,7 @@ def updatefile(speedcheck):
     if not Path.isfile(filename):
         with open(filename, "w") as fil:
             fil.write("Time (IsoFormat), Ping latency (ms), Down Speed (Mbyte/s), Up Speed (Mbyte/s)\n")
+        daily.runDalies()
     with open(filename, "at") as fil:
         line = "{0}, {1}, {2}, {3}\n".format(t, speedcheck.ping, speedcheck.downSpeed, speedcheck.upSpeed)
         fil.write(line)
@@ -30,8 +32,6 @@ if __name__ == "__main__":
     while running:
         if (datetime.now() > nextRun):
             runs += 1
-            nextRun = nextRun + timedelta(minutes = 1)
+            nextRun = nextRun + timedelta(minutes = 6)
             speed = st.speed()
             updatefile(speed)
-            if (runs >= 3):
-                running = False
