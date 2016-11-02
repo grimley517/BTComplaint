@@ -23,12 +23,16 @@ class speed:
 
          Ping is the latency in ms, download and upload are Speeds in Mbytes/s
         '''
-        command = "speedtest-cli --bytes --simple"
-        output = subprocess.check_output(command).decode()
-        rows =  output.split("\r\n")
-        answer = []
-        for row in rows[0:3]:
-            answer.append(self.extractNumbers(row))
+        try:
+            command = "speedtest-cli --bytes --simple"
+            output = subprocess.check_output(command).decode()
+            rows =  output.split("\r\n")
+            answer = []
+            for row in rows[0:3]:
+                answer.append(self.extractNumbers(row))
+        except:
+            answer = ["failed", "F", "F"]
+
         self.results = answer
 
 if __name__ == "__main__":

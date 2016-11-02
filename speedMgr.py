@@ -16,12 +16,11 @@ def updatefile(speedcheck):
     t = datetime.now().time().isoformat()
     if not Path.isfile(filename):
         with open(filename, "w") as fil:
-            fil.write("time, ping, down, up\n")
+            fil.write("Time (IsoFormat), Ping latency (ms), Down Speed (Mbyte/s), Up Speed (Mbyte/s)\n")
     with open(filename, "at") as fil:
         line = "{0}, {1}, {2}, {3}\n".format(t, speedcheck.ping, speedcheck.downSpeed, speedcheck.upSpeed)
         fil.write(line)
         print(line)
-
 
 
 if __name__ == "__main__":
