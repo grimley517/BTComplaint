@@ -34,5 +34,5 @@ if __name__ == "__main__":
             nextRun = nextRun + timedelta(minutes = 1)
             speed = st.speed()
             updatefile(speed)
-            if (runs > 3):
+            if (runs >= 3):
                 running = False
