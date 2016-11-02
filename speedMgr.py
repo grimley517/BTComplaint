@@ -18,7 +18,10 @@ def updatefile(speedcheck):
     if not Path.isfile(filename):
         with open(filename, "w") as fil:
             fil.write("Time (IsoFormat), Ping latency (ms), Down Speed (Mbyte/s), Up Speed (Mbyte/s)\n")
-        daily.runDalies()
+        try:
+            daily.runDalies()
+        except:
+            pass
     with open(filename, "at") as fil:
         line = "{0}, {1}, {2}, {3}\n".format(t, speedcheck.ping, speedcheck.downSpeed, speedcheck.upSpeed)
         fil.write(line)
