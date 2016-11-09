@@ -24,14 +24,18 @@ class speed:
          Ping is the latency in ms, download and upload are Speeds in Mbytes/s
         '''
         try:
-            command = "speedtest-cli --bytes --simple"
+            command = ["python3", "speedtest-cli.py", "--bytes", "--simple"]
             output = subprocess.check_output(command).decode()
-            rows =  output.split("\r\n")
+            print ("speedtest output -\n {0}".format(output))
+            rows =  output.split("\n")
             answer = []
+            print ("speedtest answer = {0}".format(answer))
             for row in rows[0:3]:
                 answer.append(self.extractNumbers(row))
-        except:
-            answer = ["failed", "F", "F"]
+        except Exception as ex:
+            answer = ["failed", 0, 0]
+            print (" a {0} Exception occured".format(type(ex)))
+            print(ex)
 
         self.results = answer
 

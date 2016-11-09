@@ -12,6 +12,7 @@ from datetime import datetime, date, time, timedelta
 import os.path as Path
 import DailyActions as daily
 
+
 def updatefile(speedcheck):
     filename = "results/{0} speedresults.csv".format(date.today())
     t = datetime.now().time().isoformat()
