@@ -1,0 +1,8 @@
+[project]
+name = "btcomplaint"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "pylint>=4.0",
+    "speedtest-cli>=0.3.4",
+]
